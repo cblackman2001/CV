@@ -1,0 +1,289 @@
+
+\documentclass[10pt, letterpaper]{article}
+
+% Packages:
+\usepackage[
+        ignoreheadfoot, 
+        top=2 cm, 
+        bottom=2 cm, 
+        left=2 cm, 
+        right=2 cm, 
+        footskip=1.0 cm, 
+        % showframe % for debugging 
+    ]{geometry} 
+\usepackage[explicit]{titlesec} 
+\usepackage{tabularx} 
+\usepackage{array} 
+\usepackage[dvipsnames]{xcolor} 
+\definecolor{primaryColor}{RGB}{0, 79, 144} 
+\usepackage{enumitem} 
+\usepackage{fontawesome5} 
+\usepackage{amsmath} 
+\usepackage[
+    pdfauthor={Callum Blackman},
+    colorlinks=true,
+    urlcolor=primaryColor
+]{hyperref} 
+\usepackage[pscoord]{eso-pic} 
+\usepackage{calc} 
+\usepackage{bookmark} 
+\usepackage{lastpage} 
+\usepackage[default, type1]{sourcesanspro} 
+\usepackage{ifthen}
+
+
+\pagestyle{empty} 
+\setcounter{secnumdepth}{0} 
+\setlength{\parindent}{0pt} 
+\setlength{\topskip}{0pt} 
+\makeatletter
+\let\ps@customFooterStyle\ps@plain 
+\patchcmd{\ps@customFooterStyle}{\thepage}{
+    \color{gray}\textit{\small Callum Blackman \thepage{} of \pageref*{LastPage}}
+}{}{} 
+\makeatother
+\pagestyle{customFooterStyle}
+
+\titleformat{\section}{
+        % make the font size of the section title large and color it with the primary color
+        \Large\color{primaryColor}
+    }{
+    }{
+    }{
+        % print bold title, give 0.15 cm space and draw a line of 0.8 pt thickness
+        % from the end of the title to the end of the body
+        \textbf{#1}\hspace{0.15cm}\titlerule[0.8pt]\hspace{-0.1cm}
+    }[] % section title formatting
+
+\titlespacing{\section}{
+        % left space:
+        0pt
+    }{
+        % top space:
+        0.3 cm
+    }{
+        % bottom space:
+        0.2 cm
+    } % section title spacing
+
+\newcolumntype{L}[1]{
+    >{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}p{#1}
+} % left-aligned fixed width column type
+\newcolumntype{R}[1]{
+    >{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}p{#1}
+} % right-aligned fixed width column type
+\newcolumntype{K}[1]{
+    >{\let\newline\\\arraybackslash\hspace{0pt}}X
+} % justified flexible width column type
+\setlength\tabcolsep{-1.5pt} % no space between columns
+\newenvironment{highlights}{
+        \begin{itemize}[
+                topsep=0pt,
+                parsep=0.10 cm,
+                partopsep=0pt,
+                itemsep=0pt,
+                after=\vspace{-1\baselineskip},
+                leftmargin=0.4 cm + 3pt
+            ]
+    }{
+        \end{itemize}
+    } % new environment for highlights
+
+\newenvironment{header}{
+        \setlength{\topsep}{0pt}\par\kern\topsep\centering\color{primaryColor}\linespread{1.5}
+    }{
+        \par\kern\topsep
+    } % new environment for the header
+
+\newcommand{\placelastupdatedtext}{% \placetextbox{<horizontal pos>}{<vertical pos>}{<stuff>}
+  \AddToShipoutPictureFG*{% Add <stuff> to current page foreground
+    \put(
+        \LenToUnit{\paperwidth-2 cm-0.2 cm+0.05cm},
+        \LenToUnit{\paperheight-1.0 cm}
+    ){\vtop{{\null}\makebox[0pt][c]{
+        \small\color{gray}\textit{Last updated in February 2024}\hspace{\widthof{Last updated in February 2024}}
+    }}}%
+  }%
+}%
+
+% save the original href command in a new command:
+\let\hrefWithoutArrow\href
+ % new command for external links:
+\renewcommand{\href}[2]{\hrefWithoutArrow{#1}{\mbox{\ifthenelse{\equal{#2}{}}{ }{#2 }\raisebox{.15ex}{\footnotesize \faExternalLink*}}}}
+
+\let\originalTabularx\tabularx
+\let\originalEndTabularx\endtabularx
+
+\renewenvironment{tabularx}{\bgroup\centering\originalTabularx}{\originalEndTabularx\par\egroup}
+
+% For TextEntrys (see https://tex.stackexchange.com/a/600/287984):
+\def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1\topsep=0pt\itemsep=0pt\parsep=0pt\parskip=0pt\labelwidth=0pt\itemindent=0pt\labelsep=0pt}\item[]}
+\let\endchangemargin=\endlist 
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+\begin{document}
+    \placelastupdatedtext
+    \begin{header}
+        \fontsize{30 pt}{30 pt}
+        \textbf{Callum Blackman}
+
+        \vspace{0.3 cm}
+
+        \normalsize
+        \hspace*{0.5 cm}
+        \mbox{\hrefWithoutArrow{mailto:cblackman2001@hotmail.com}{{\small\faEnvelope[regular]}\hspace*{0.13cm}cblackman2001@hotmail.com}}
+        \hspace*{0.5 cm}
+        \mbox{{\small\faMapMarker*}\hspace*{0.13cm}Surrey KT9}
+        \hspace*{0.5 cm}
+        \hspace*{0.5 cm}
+        \hspace*{0.5 cm}
+        \hspace*{0.5 cm}
+    \end{header}
+
+    \vspace{0.1 cm}
+
+
+    \section{Summary}
+
+        \begin{changemargin}{0.2 cm}{0.2 cm}
+Completed a level 4 DevOps Apprenticeship and continued employment as a junior DevOps Engineer, working within a team tackling tasks related to supporting and maintaining Kubernetes environments hosted on azure and developing pipelines for developed apps for multiple teams. Adapting to various problems which occurred within the team. I was involved in an early career council to host events and socials in order to develop professionally and technically for self and peers. I have an interest in technology and learning new tools as well as computer related hardware. 
+        \end{changemargin}
+    \section{Education}
+        \begin{tabularx}{
+            \textwidth-0.4 cm-0.13cm
+        }{
+            L{0.85cm}
+            K{0.2 cm}
+            R{4.1 cm}
+        }
+            &
+            \textbf{BAE}- Lvl 4 DevOps Engineer Apprenticeship
+            
+
+            \vspace{0.10 cm}
+            \textbf{Kingston College}- HNC Computing, BTEC Combined Sciences
+
+            \vspace{0.10 cm}
+            \textbf{Blenheim High School}- 9 GCSE's, Including Maths, English, Triple Sciences, Computer Science
+        \end{tabularx}
+    \section{Experience}
+        \vspace{0.1 cm}
+        \begin{tabularx}{
+            \textwidth-0.4 cm-0.13cm
+        }{
+            K{0.2 cm}
+            R{4.1 cm}
+        }
+            \textbf{BAE Digital Intelligence}- DevOps Engineer
+
+            \vspace{0.10 cm}
+
+            \begin{highlights}
+                \item Started as Apprentice and underwent a intensive bootcamp to learn the skills required and then joined a team of engineers, completed apprenticeship After a year and a half and continued employment
+
+            \end{highlights}
+            &
+
+           November 2022 - Present
+
+        \end{tabularx}
+
+        \vspace{0.1 cm}
+        \begin{tabularx}{
+            \textwidth-0.4 cm-0.13cm
+        }{
+            K{0.2 cm}
+            R{4.1 cm}
+        }
+            \textbf{Beefeater}- Front of house
+
+            \vspace{0.10 cm}
+
+            \begin{highlights}
+                \item Waiting on tables, running bar and ensuring everything is being accounted for and on time to ensure customers are having a good experience
+            \end{highlights}
+            &
+            2019 - 2022
+
+        \end{tabularx}
+    \section{Demonstrated Skills}
+
+        \begingroup\leftskip=0.2 cm
+        \advance\csname @rightskip\endcsname 0.2 cm
+        \advance\rightskip 0.2 cm
+
+        \textbf {Working in a team:} As a DevOps engineer i was working within teams of other engineers in order to complete our work and ensure we deliver a high standard to customers, as well as communicating with non-technical coworkers about the work. In the beefeater this was also relevant for ensuring everything is working well and being delivered correctly to customers. \par\endgroup
+
+        \vspace{0.2 cm}
+        \begingroup\leftskip=0.2 cm
+        \advance\csname @rightskip\endcsname 0.2 cm
+        \advance\rightskip 0.2 cm
+
+        \textbf{Problem Solving and analytical thinking:} Solving problems which occur in our environments which includes investigating the problem and putting together effective plans in order to tackle the issue in an effective time and prevent downtime, as well as with solving general ticket work. \par\endgroup
+
+        \vspace{0.2 cm}
+        \begingroup\leftskip=0.2 cm
+        \advance\csname @rightskip\endcsname 0.2 cm
+        \advance\rightskip 0.2 cm
+
+        \textbf{Adaptability:} Changing focuses depending on what the team requires if something breaks within cloud environments or pipelines and also learning new tools quickly which are needed for tickets. \par\endgroup
+
+        \vspace{0.2 cm}
+        \begingroup\leftskip=0.2 cm
+        \advance\csname @rightskip\endcsname 0.2 cm
+        \advance\rightskip 0.2 cm
+
+        \textbf{Training and Mentorship:} Training and supporting newer members of the team in order to assist them with work and learn our tools. Arranging and planning events in order for newer members of staff to learn from advice of higher ups such as directors of the company in a talk and take part in various activities to assist work development. \par\endgroup
+    
+    \section{Technologies}
+
+        \begingroup\leftskip=0.2 cm
+        \advance\csname @rightskip\endcsname 0.2 cm
+        \advance\rightskip 0.2 cm
+
+        \textbf {DevOps Practices:} Continuous Integration/Continuous Deployment CI/CD \par\endgroup
+
+        \vspace{0.2 cm}
+        \begingroup\leftskip=0.2 cm
+        \advance\csname @rightskip\endcsname 0.2 cm
+        \advance\rightskip 0.2 cm
+
+        \textbf{Scripting and programming Languages:} Bash, Powershell, Python, Groovy \par\endgroup
+
+        \vspace{0.2 cm}
+        \begingroup\leftskip=0.2 cm
+        \advance\csname @rightskip\endcsname 0.2 cm
+        \advance\rightskip 0.2 cm
+
+        \textbf{Automation Tools:} Jenkins, Terraform \par\endgroup
+
+        \vspace{0.2 cm}
+        \begingroup\leftskip=0.2 cm
+        \advance\csname @rightskip\endcsname 0.2 cm
+        \advance\rightskip 0.2 cm
+
+        \textbf{Containerization:} Docker, Kubernetes \par\endgroup
+
+        \vspace{0.2 cm}
+        \begingroup\leftskip=0.2 cm
+        \advance\csname @rightskip\endcsname 0.2 cm
+        \advance\rightskip 0.2 cm
+
+        \textbf{Cloud Platforms:} Azure \par\endgroup
+
+        \vspace{0.2 cm}
+        \begingroup\leftskip=0.2 cm
+        \advance\csname @rightskip\endcsname 0.2 cm
+        \advance\rightskip 0.2 cm
+
+        \textbf{Collaboration:} Team and cross team communication, Agile Methodologies (Kanban, Scrum) \par\endgroup
+
+        \vspace{0.2 cm}
+        \begingroup\leftskip=0.2 cm
+        \advance\csname @rightskip\endcsname 0.2 cm
+        \advance\rightskip 0.2 cm
+        \par\endgroup
+
+\end{document}
